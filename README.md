@@ -14,6 +14,7 @@ https://trello.com/b/WyrDLy6L/pr%C3%A1ctica-3-aor00039
 
 ## Documentos establecidos en Fauna
 
+```
 [
     {
         "nombre": "Adrián",
@@ -186,3 +187,4 @@ https://trello.com/b/WyrDLy6L/pr%C3%A1ctica-3-aor00039
         "posicion": "Rematador opuesto"
   }
 ]
+```
