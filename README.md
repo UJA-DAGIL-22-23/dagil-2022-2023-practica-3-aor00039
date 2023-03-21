@@ -188,3 +188,16 @@ https://trello.com/b/WyrDLy6L/pr%C3%A1ctica-3-aor00039
   }
 ]
 ```
+
+## Capturas de pantalla de Fauna
+- Home:
+![image](https://user-images.githubusercontent.com/124682695/226602711-fffc7c59-4ba7-44e8-85e5-e07d044ce4bb.png)
+
+- BBDD:
+![image](https://user-images.githubusercontent.com/124682695/226602840-0e74e015-8872-4799-a4bd-be2d136f96b3.png)
+
+- Colección:
+![image](https://user-images.githubusercontent.com/124682695/226602937-07c49a2a-5eb3-4b4d-9d3a-368634bd26e8.png)
+
+
+
