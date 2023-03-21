@@ -440,3 +440,74 @@ Además, incluye documentación sobre dicho código y un vídeo descriptivo de c
 ## URL del tablero en Trello
 
 https://trello.com/b/WyrDLy6L/pr%C3%A1ctica-3-aor00039
+
+## Documentos establecidos en Fauna
+
+- Documento 1:
+    {
+        "nombre": "Adrián",
+        apellidos: "Gavira Collado",
+        nacimiento: {
+            dia: 19,
+            mes: 9,
+            Año: 1987
+        },
+        direccion: {
+            Ciudad: "Cádiz",
+            Pais: "España"
+        },
+        vectorCompeticiones: [2012, 2016, 2020],
+        talla: 193,
+        numMedallasOlimpicas: 3,
+        posicion: "Armador"
+    }
+- Documento 2:
+    {
+        nombre: "Pablo",
+        apellidos: "Herrera Allepuz",
+        nacimiento: {
+            dia: 29,
+            mes: 6,
+            Año: 1982
+        },
+        direccion: {
+            Ciudad: "Castellón",
+            Pais: "España"
+        },
+        vectorCompeticiones: [2012, 2014, 2022],
+        talla: 193,
+        numMedallasOlimpicas: 1,
+        posicion: "Rematador medio"
+    }
+- Documento 3:
+    {
+        nombre: "April",
+        apellidos: "Elizabeth Ross",
+        nacimiento: {
+            dia: 20,
+            mes: 6,
+            Año: 1982
+        },
+        direccion: {
+            Ciudad: "California",
+            Pais: "EEUU"
+        },
+        vectorCompeticiones: [2012, 2016, 2020],
+        talla: 185,
+        numMedallasOlimpicas: 6,
+        posicion: "Armador"
+    }
+- Documento 4:
+
+- Documento 5:
+
+- Documento 6:
+
+- Documento 7:
+
+- Documento 8:
+
+- Documento 9:
+
+- Documento 10:
+
