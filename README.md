@@ -209,6 +209,14 @@ https://trello.com/b/WyrDLy6L/pr%C3%A1ctica-3-aor00039
 - Botón Acerca de:
 ![image](https://user-images.githubusercontent.com/124682695/228320770-d7a964ba-c3f7-4ebe-9261-1dfbfeabad83.png)
 
+## Segunda historia de usuario
+- Trello:
+![image](https://user-images.githubusercontent.com/124682695/229495241-58274466-6de9-4f12-982c-edb711015abb.png)
+
+
+- Listado con nombres:
+![image](https://user-images.githubusercontent.com/124682695/229494170-7a167fd2-10a0-4d8f-b40a-d930d46d7a21.png)
+
 
 
 
