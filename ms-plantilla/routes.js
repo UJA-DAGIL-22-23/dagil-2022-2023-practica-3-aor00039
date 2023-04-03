@@ -47,5 +47,17 @@ router.get("/test_db", async (req, res) => {
 });
 
 
+/**
+ * Ruta Listar nombres personas
+ */
+router.get("/listarnPersonas", async(req,res)=>{
+    try{
+        await callbacks.listanPersonas(req,res)
+    }catch (error){
+        console.log(error);
+    }
+});
+
+
 // Exporto el módulo para poder usarlo en server
 module.exports = router;

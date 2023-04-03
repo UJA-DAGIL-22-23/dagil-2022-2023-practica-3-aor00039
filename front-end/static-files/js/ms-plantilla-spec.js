@@ -20,6 +20,11 @@ const datosDescargadosPrueba = {
     fecha: "00/00/0000"
 }
 
+let personaPrueba = {
+    id : "idprueba",
+    nombre : "nombrePrueba"
+}
+
 
 // Función para esperar y dar tiempo a que responda el microservicio
 function esperar(ms) {
@@ -124,6 +129,41 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
 })
 
 
+describe("Pie table ", function () {
+    it("debería devolver las etiquetas HTML para el pie de tabla",
+        function () {
+            expect(Plantilla.pieTabla()).toBe("</tbody></table>");
+        });
+});
+
+describe("Cabecera table ", function () {
+    it("debería devolver las etiquetas HTML para la cabecera de tabla",
+        function () {
+            expect(Plantilla.cabeceraTablaNombres()).toBe(`<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th></thead><tbody>`);
+        });
+});
+
+describe('Plantilla.cuerpoListarPersonas', () => {
+    it('Debería de volver datos de una persona creada por defecto', () => {
+      // Arrange
+      const p = {
+        data: {
+          nombre: 'Juan',
+        },
+        ref: {
+          '@ref': {
+            ID: 'person-1',
+            id: '123',
+          },
+        },
+      };
+      const expectedOutput = '<tr title="person-1"><td>123</td><td>Juan</td></tr>';
+      const actualOutput = Plantilla.cuerpoListarPersonas(p);
+      expect(actualOutput).toEqual(expectedOutput);
+    });
+  });
+
+  
 /*
 IMPORTANTE
 ==========

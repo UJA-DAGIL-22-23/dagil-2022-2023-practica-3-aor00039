@@ -18,6 +18,21 @@ Plantilla.datosDescargadosNulos = {
     fecha: ""
 }
 
+Plantilla.plantillaTags = {
+    "ID": " ID ",
+    "NOMBRE ": " NOMBRE ",
+    "APELLIDOS ": " APELLIDOS ",
+    "DIA": " DIA ",
+    "MES": " MES ",
+    "ANO": " ANO ",
+    "CIUDAD": " CIUDAD ",
+    "PAIS": " PAIS ",
+    "VECTORCOMPETICIONES": " VECTORCOMPETICIONES ",
+    "TALLA": " TALLA ",
+    "NUMMEDALLASOLIMPICAS": " NUM MEDALLAS OLIMIPICAS ",
+    "POSICION": " POSICION "
+}
+
 
 /**
  * Función que descarga la info MS Plantilla al llamar a una de sus rutas
@@ -107,5 +122,52 @@ Plantilla.procesarAcercaDe = function () {
     this.descargarRuta("/plantilla/acercade", this.mostrarAcercaDe);
 }
 
+/**
+ * Función principal para responder al evento de elegir la opción "Listar nombres personas"
+ */
+Plantilla.procesarListarNombres = function () {
+    this.recupera(this.imprime);
+}
 
 
+Plantilla.imprime = function (vector) {
+    
+    let mensaje = "";
+    mensaje += Plantilla.cabeceraTablaNombres();
+    vector.forEach(e => mensaje+= Plantilla.cuerpoListarPersonas(e))
+    mensaje += Plantilla.pieTabla();
+
+    Frontend.Article.actualizar("Listado de personas", mensaje);
+}
+
+Plantilla.cabeceraTablaNombres = function () {
+    return `<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th></thead><tbody>`;
+}
+
+Plantilla.cuerpoListarPersonas = function (p) {
+    const d = p.data
+    return `<tr title="${p.ref['@ref'].ID}"><td>${p.ref['@ref'].id}</td><td>${d.nombre}</td></tr>`;
+}
+
+Plantilla.pieTabla = function () {
+    return "</tbody></table>";
+}
+
+
+Plantilla.recupera = async function (callBackFn) {
+
+    let respuesta = null
+    try{
+        const url = Frontend.API_GATEWAY + "/plantilla/listarnPersonas"
+        respuesta = await fetch(url)
+    }catch (error){
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+    }
+
+    let vectorPersonas = null
+    if(respuesta){
+        vectorPersonas = await respuesta.json()
+        callBackFn(vectorPersonas.data)
+    }
+}
