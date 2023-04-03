@@ -199,5 +199,24 @@ https://trello.com/b/WyrDLy6L/pr%C3%A1ctica-3-aor00039
 - Colección:
 ![image](https://user-images.githubusercontent.com/124682695/226602937-07c49a2a-5eb3-4b4d-9d3a-368634bd26e8.png)
 
+## Primer incremento
+
+### Primera historia de usuario
+
+- Trello:
+![image](https://user-images.githubusercontent.com/124682695/228320922-98308fe5-17f8-4e42-9da0-7377ed18fc3c.png)
+
+- Botón Acerca de:
+![image](https://user-images.githubusercontent.com/124682695/228320770-d7a964ba-c3f7-4ebe-9261-1dfbfeabad83.png)
+
+## Segunda historia de usuario
+- Trello:
+![image](https://user-images.githubusercontent.com/124682695/229495241-58274466-6de9-4f12-982c-edb711015abb.png)
+
+
+- Listado con nombres:
+![image](https://user-images.githubusercontent.com/124682695/229494170-7a167fd2-10a0-4d8f-b40a-d930d46d7a21.png)
+
+
 
 
