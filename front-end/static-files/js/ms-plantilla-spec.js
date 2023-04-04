@@ -279,6 +279,61 @@ describe('Plantilla.cuerpoListarPersonas', () => {
     });
   });
 
+  describe("Cabecera table personas ", function () {
+    it("debería devolver las etiquetas HTML para la cabecera de tabla",
+        function () {
+            expect(Plantilla.cabeceraTablaTodos()).toBe(`<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Día</th><th>Mes</th><th>Año</th><th>Ciudad</th><th>País</th><th>VECTORCOMPETICIONES</th><th>Talla</th><th>NUMMEDALLASOLIMPICAS</th><th>Posicion</th></thead><tbody>`);
+        });
+});
+
+describe('Plantilla.cuerpoListarTodos', () => {
+    it('Debería de devolver datos de una persona creada por defecto', () => {
+      // Arrange
+      const p = {
+        data: {
+          nombre: 'Juan',
+          apellidos: 'Pérez',
+          nacimiento: { dia: '2', mes: '3', Año: '1990' },
+          direccion: { ciudad: 'Madrid', pais: 'España' },
+          vectorCompeticiones: '2016,2022',
+          talla: '180',
+          numMedallasOlimpicas: '3',
+          posicion: 'Rematador',
+        },
+        ref: {
+          '@ref': {
+            ID: 'person-1',
+            id: '123',
+          },
+        },
+      };
+      const expectedOutput = '<tr title="person-1"><td>123</td><td>Juan</td><td>Pérez</td><td>2</td><td>3</td><td>1990</td><td>Madrid</td><td>España</td><td>2016,2022</td><td>180</td><td>3</td><td>Rematador</td></tr>';
+      const actualOutput = Plantilla.cuerpoListarTodos(p);
+      expect(actualOutput).toEqual(expectedOutput);
+    });
+  });
+
+  describe("Plantilla", function() {
+    describe("imprimeTodos", function() {
+      
+      beforeEach(function() {
+        spyOn(Frontend.Article, "actualizar");
+      });
+      
+      it("should call Frontend.Article.actualizar with correct arguments", function() {
+        const vector = [{ ref: { "@ref": { ID: "1", id: "123" } }, data: { nombre: "John", apellidos: "Doe", nacimiento: { dia: 1, mes: 1, Año: 2000 }, direccion: { ciudad: "Madrid", pais: "España" }, vectorCompeticiones: ["comp1", "comp2"], talla: "M", numMedallasOlimpicas: 2, posicion: 1 } }];
+        const expectedMensaje = '<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Día</th><th>Mes</th><th>Año</th><th>Ciudad</th><th>País</th><th>VECTORCOMPETICIONES</th><th>Talla</th><th>NUMMEDALLASOLIMPICAS</th><th>Posicion</th></thead><tbody><tr title="1"><td>123</td><td>John</td><td>Doe</td><td>1</td><td>1</td><td>2000</td><td>Madrid</td><td>España</td><td>comp1,comp2</td><td>M</td><td>2</td><td>1</td></tr></tbody></table>';
+        
+        Plantilla.imprimeTodos(vector);
+        
+        expect(Frontend.Article.actualizar).toHaveBeenCalledWith("Listado de personas", expectedMensaje);
+      });
+      
+    });
+  });
+
+
+
   
 /*
 IMPORTANTE

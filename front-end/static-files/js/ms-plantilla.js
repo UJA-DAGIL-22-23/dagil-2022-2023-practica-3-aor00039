@@ -20,17 +20,17 @@ Plantilla.datosDescargadosNulos = {
 
 Plantilla.plantillaTags = {
     "ID": " ID ",
-    "NOMBRE ": " NOMBRE ",
-    "APELLIDOS ": " APELLIDOS ",
-    "DIA": " DIA ",
-    "MES": " MES ",
-    "ANO": " ANO ",
-    "CIUDAD": " CIUDAD ",
-    "PAIS": " PAIS ",
-    "VECTORCOMPETICIONES": " VECTORCOMPETICIONES ",
-    "TALLA": " TALLA ",
-    "NUMMEDALLASOLIMPICAS": " NUM MEDALLAS OLIMIPICAS ",
-    "POSICION": " POSICION "
+    "nombre ": " nombre ",
+    "apellidos ": " apellidos ",
+    "dia": " dia ",
+    "mes": " mes ",
+    "Año": " Año ",
+    "ciudad": " ciudad ",
+    "pais": " pais ",
+    "vectorCompeticiones": " vectorCompeticiones ",
+    "talla": " talla ",
+    "numMedallasOlimpicas": " numMedallasOlimpicas ",
+    "posicion": " posicion "
 }
 
 
@@ -203,4 +203,27 @@ Plantilla.imprimexNombre = function (vector) {
     mensaje += Plantilla.pieTabla();
 
     Frontend.Article.actualizar("Listado de personas ordenado por nombre", mensaje);
+}
+
+// Cuarta historia de usuario
+Plantilla.procesarListarTodos = function () {
+    this.recupera(this.imprimeTodos);
+}
+
+Plantilla.imprimeTodos = function (vector) {
+    let mensaje = "";
+    mensaje += Plantilla.cabeceraTablaTodos();
+    vector.forEach(e => mensaje += Plantilla.cuerpoListarTodos(e))
+    mensaje += Plantilla.pieTabla();
+
+    Frontend.Article.actualizar("Listado de personas", mensaje);
+}
+
+Plantilla.cabeceraTablaTodos = function () {
+    return `<table class="listado-proyectos"><thead><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Día</th><th>Mes</th><th>Año</th><th>Ciudad</th><th>País</th><th>VECTORCOMPETICIONES</th><th>Talla</th><th>NUMMEDALLASOLIMPICAS</th><th>Posicion</th></thead><tbody>`;
+  }
+
+  Plantilla.cuerpoListarTodos = function (p) {
+    const d = p.data
+    return `<tr title="${p.ref['@ref'].ID}"><td>${p.ref['@ref'].id}</td><td>${d.nombre}</td><td>${d.apellidos}</td><td>${d.nacimiento.dia}</td><td>${d.nacimiento.mes}</td><td>${d.nacimiento.Año}</td><td>${d.direccion.ciudad}</td><td>${d.direccion.pais}</td><td>${d.vectorCompeticiones}</td><td>${d.talla}</td><td>${d.numMedallasOlimpicas}</td><td>${d.posicion}</td></tr>`;
 }
