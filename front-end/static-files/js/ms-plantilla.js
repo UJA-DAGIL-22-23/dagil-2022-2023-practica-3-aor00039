@@ -138,6 +138,7 @@ Plantilla.imprime = function (vector) {
     mensaje += Plantilla.pieTabla();
 
     Frontend.Article.actualizar("Listado de personas", mensaje);
+    return mensaje;
 }
 
 Plantilla.cabeceraTablaNombres = function () {
@@ -170,4 +171,36 @@ Plantilla.recupera = async function (callBackFn) {
         vectorPersonas = await respuesta.json()
         callBackFn(vectorPersonas.data)
     }
+}
+
+// Tercera historia de usuario
+
+Plantilla.procesarListarNombresOrdenados = function () {
+    this.recupera(this.imprimexNombre);
+}
+
+
+
+Plantilla.ordenarPorNombre = function (vector) {
+    vector.sort(function(a, b){
+        var nombreA = a.data.nombre.toUpperCase(); // convierte los nombres a mayúsculas para ordenar correctamente
+        var nombreB = b.data.nombre.toUpperCase();
+        if (nombreA < nombreB) {
+            return -1;
+        }
+        if (nombreA > nombreB) {
+            return 1;
+        }
+        return 0;
+    });
+}
+
+Plantilla.imprimexNombre = function (vector) {
+    Plantilla.ordenarPorNombre(vector); // ordena el vector por nombre
+    let mensaje = "";
+    mensaje += Plantilla.cabeceraTablaNombres();
+    vector.forEach(e => mensaje+= Plantilla.cuerpoListarPersonas(e))
+    mensaje += Plantilla.pieTabla();
+
+    Frontend.Article.actualizar("Listado de personas ordenado por nombre", mensaje);
 }

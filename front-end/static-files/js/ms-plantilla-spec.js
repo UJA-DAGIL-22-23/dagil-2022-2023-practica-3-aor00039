@@ -163,6 +163,122 @@ describe('Plantilla.cuerpoListarPersonas', () => {
     });
   });
 
+  describe("Plantilla.imprime", function(){
+    it("Deberia trabajar correctamente con vectores vacios", function(){
+        const vector = [];
+        const mensajeEsperado = Plantilla.cabeceraTablaNombres() + Plantilla.pieTabla();
+        const mensaje = Plantilla.imprime(vector);
+        expect(mensaje).toBe(mensajeEsperado); 
+    });
+});
+
+  describe("Plantilla.imprime", function() {
+    let vector;
+    beforeEach(function() {
+      vector = [
+        {
+          ref: {
+            "@ref": {
+              id: "123"
+            }
+          },
+          data: {
+            nombre: "Juan"
+          }
+        },
+        {
+          ref: {
+            "@ref": {
+              id: "456"
+            }
+          },
+          data: {
+            nombre: "Ana"
+          }
+        },
+        {
+          ref: {
+            "@ref": {
+              id: "789"
+            }
+          },
+          data: {
+            nombre: "Carlos"
+          }
+        }
+      ];
+    });
+  
+    it("debe devolver una cadena que contenga marcado de tabla HTML", function() {
+      const result = Plantilla.imprime(vector);
+      expect(typeof result).toBe("string");
+      expect(result).toContain("<table");
+      expect(result).toContain("<thead");
+      expect(result).toContain("<tbody");
+      expect(result).toContain("</table>");
+    });
+  });
+
+  describe('ordenarPorNombre', () => {
+    it('Debe ordenar un vector vacío', () => {
+      const vector = [];
+      Plantilla.ordenarPorNombre(vector);
+      expect(vector).toEqual([]);
+    });
+  
+    it('Debe ordenar un vector con un solo elemento', () => {
+      const vector = [{ data: { nombre: 'Juan' } }];
+      Plantilla.ordenarPorNombre(vector);
+      expect(vector).toEqual([{ data: { nombre: 'Juan' } }]);
+    });
+  
+    it('Debe ordenar un vector con varios elementos', () => {
+      const vector = [
+        { data: { nombre: 'Luis' } },
+        { data: { nombre: 'Ana' } },
+        { data: { nombre: 'Juan' } },
+      ];
+      Plantilla.ordenarPorNombre(vector);
+      expect(vector).toEqual([
+        { data: { nombre: 'Ana' } },
+        { data: { nombre: 'Juan' } },
+        { data: { nombre: 'Luis' } },
+      ]);
+    });
+  
+    it('Debe ordenar correctamente nombres con mayúsculas y minúsculas', () => {
+      const vector = [
+        { data: { nombre: 'ana' } },
+        { data: { nombre: 'Juan' } },
+        { data: { nombre: 'Luis' } },
+        { data: { nombre: 'carlos' } },
+      ];
+      Plantilla.ordenarPorNombre(vector);
+      expect(vector).toEqual([
+        { data: { nombre: 'ana' } },
+        { data: { nombre: 'carlos' } },
+        { data: { nombre: 'Juan' } },
+        { data: { nombre: 'Luis' } },
+      ]);
+    });
+  });
+
+  describe("Plantilla.imprimexNombre", function() {
+    let vector;
+  
+    beforeEach(function() {
+      vector = [      {        ref: {          "@ref": {            id: "123"          }        },        data: {          nombre: "Juan"        }      },      {        ref: {          "@ref": {            id: "456"          }        },        data: {          nombre: "Ana"        }      },      {        ref: {          "@ref": {            id: "789"          }        },        data: {          nombre: "Carlos"        }      }    ];
+    });
+  
+    it("debería ordenar el vector por nombre", function() {
+      Plantilla.imprimexNombre(vector);
+  
+      let nombresOrdenados = vector.map(e => e.data.nombre);
+      let nombresEsperados = ["Ana", "Carlos", "Juan"];
+      expect(nombresOrdenados).toEqual(nombresEsperados);
+    });
+  });
+
   
 /*
 IMPORTANTE
