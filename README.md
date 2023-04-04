@@ -230,6 +230,17 @@ https://trello.com/b/WyrDLy6L/pr%C3%A1ctica-3-aor00039
 
 ## Segundo incremento
 
+-Trello:
+![image](https://user-images.githubusercontent.com/124682695/229773981-d6999351-8fd0-4be9-b0e1-3c3dd91cc70d.png)
+
+#### Cuarta historia de usuario
+-Trello:
+![image](https://user-images.githubusercontent.com/124682695/229774113-958b742f-98b9-4c5b-bcc0-f3844c6e884b.png)
+
+-Listado con todos los campos de todos los usuarios:
+![image](https://user-images.githubusercontent.com/124682695/229774379-77dc24c2-fdcc-4a41-8e59-d726798954ce.png)
+
+
 
 
 
