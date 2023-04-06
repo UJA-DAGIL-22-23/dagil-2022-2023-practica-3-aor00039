@@ -10,6 +10,9 @@
 /// Creo el espacio de nombres
 let Plantilla = {};
 
+var vDatos;
+
+
 // Plantilla de datosDescargados vacíos
 Plantilla.datosDescargadosNulos = {
     mensaje: "Datos Descargados No válidos",
@@ -226,4 +229,95 @@ Plantilla.cabeceraTablaTodos = function () {
   Plantilla.cuerpoListarTodos = function (p) {
     const d = p.data
     return `<tr title="${p.ref['@ref'].ID}"><td>${p.ref['@ref'].id}</td><td>${d.nombre}</td><td>${d.apellidos}</td><td>${d.nacimiento.dia}</td><td>${d.nacimiento.mes}</td><td>${d.nacimiento.Año}</td><td>${d.direccion.ciudad}</td><td>${d.direccion.pais}</td><td>${d.vectorCompeticiones}</td><td>${d.talla}</td><td>${d.numMedallasOlimpicas}</td><td>${d.posicion}</td></tr>`;
+}
+
+
+//Quinta historia de usuario
+
+Plantilla.cambiarOrden = function (){
+    this.recupera(this.ordenarBoton)
+ }
+
+Plantilla.ordenarCampo = function(tipo, vDatos){
+    if(tipo==0){
+        vDatos.sort(function(a, b){
+            let id1 = a.ref['@ref'].id
+            let id2 = b.ref['@ref'].id
+            if (id1 < id2) {
+                return -1;
+            }
+            if (id1 > id2) {
+                return 1;
+            }
+            return 0;
+        });
+    }
+    if(tipo==1){
+        vDatos.sort(function(a, b){
+            let nombre1 = a.data.nombre.toUpperCase();
+            let nombre2 = b.data.nombre.toUpperCase();
+            if (nombre1 < nombre2) {
+                return -1;
+            }
+            if (nombre1 > nombre2) {
+                return 1;
+            }
+            return 0;
+        });
+    }
+    if(tipo==2){
+        vDatos.sort(function(a, b){
+            let apellido1 = a.data.apellidos.toUpperCase();
+            let apellido2 = b.data.apellidos.toUpperCase();
+            if (apellido1 < apellido2) {
+                return -1;
+            }
+            if (apellido1 > apellido2) {
+                return 1;
+            }
+            return 0;
+        });
+    }
+    if(tipo==3){
+        vDatos.sort(function(a, b){
+            let altura1 = a.data.talla;
+            let altura2 = b.data.talla;
+            if (altura1 < altura2) {
+                return -1;
+            }
+            if (altura1 > altura2) {
+                return 1;
+            }
+            return 0;
+        });
+    }
+    if(tipo==4){
+        vDatos.sort(function(a, b){
+            let pConseguidos1 = a.data.numMedallasOlimpicas;
+            let pConseguidos2 = b.data.numMedallasOlimpicas;
+            if (pConseguidos1 < pConseguidos2) {
+                return -1;
+            }
+            if (pConseguidos1 > pConseguidos2) {
+                return 1;
+            }
+            return 0;
+        });
+    }
+    Plantilla.ordenarBoton(vDatos, tipo);
+}
+ 
+Plantilla.ordenarBoton = function(vector){
+    let mensaje = "";
+    vDatos = vector;
+    mensaje += `<div class="contenedor"><button class="miBoton" onclick="Plantilla.ordenarCampo(0, vDatos)">Ordenar por ID</button></div><br></br>`;
+    mensaje += `<div class="contenedor"><button class="miBoton" onclick="Plantilla.ordenarCampo(1, vDatos)">Ordenar por Nombre</button></div><br></br>`;
+    mensaje += `<div class="contenedor"><button class="miBoton" onclick="Plantilla.ordenarCampo(2, vDatos)">Ordenar por Apellidos</button></div><br></br>`;
+    mensaje += `<div class="contenedor"><button class="miBoton" onclick="Plantilla.ordenarCampo(3, vDatos)">Ordenar por Altura</button></div><br></br>`;
+    mensaje += `<div class="contenedor"><button class="miBoton" onclick="Plantilla.ordenarCampo(4, vDatos)">Ordenar por Número de medallas olímpicas</button></div><br></br>`;
+    mensaje += Plantilla.cabeceraTablaTodos();
+    vector.forEach(e => mensaje+= Plantilla.cuerpoListarTodos(e));
+    mensaje += Plantilla.pieTabla();
+    Frontend.Article.actualizar("Listado de personas con diferente orden", mensaje);
+    return mensaje;
 }

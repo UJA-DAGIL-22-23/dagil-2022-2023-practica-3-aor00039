@@ -10,6 +10,10 @@
     border: 1px solid rgba(0, 0, 100, 0.8);
 }
 
+.miBoton{
+    display: flex;
+}
+
 table.listado-proyectos thead th,
 table.listado-proyectos tbody th {
     margin: 3px;
