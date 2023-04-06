@@ -240,6 +240,16 @@ https://trello.com/b/WyrDLy6L/pr%C3%A1ctica-3-aor00039
 -Listado con todos los campos de todos los usuarios:
 ![image](https://user-images.githubusercontent.com/124682695/229774379-77dc24c2-fdcc-4a41-8e59-d726798954ce.png)
 
+#### Quinta historia de usuario
+
+-Trello:
+![image](https://user-images.githubusercontent.com/124682695/230424286-fe32ac56-5a71-4024-86fc-fbdbfdb03ad3.png)
+
+
+-Listado con botones para poder ordenar la tabla, en este caso están ordenados por talla:
+![image](https://user-images.githubusercontent.com/124682695/230424107-7117bdf4-ce91-48ce-aa78-552de74528b7.png)
+
+
 
 
 
