@@ -428,6 +428,67 @@ describe("Plantilla.imprimeConBoton", function() {
     expect(typeof result).toEqual("string");
   });
 });
+
+describe("Plantilla.mostrarPersona", function() {
+  let persona = {
+    data: {
+      nombre: "John",
+      apellidos: "Doe",
+      nacimiento: {
+        dia: 1,
+        mes: 1,
+        Año: 1990
+      },
+      direccion: {
+        ciudad: "Barcelona",
+        pais: "España"
+      },
+      vectorCompeticiones: "2016,2022",
+      talla: "180",
+      numMedallasOlimpicas: 2,
+      posicion: "Armador"
+    },
+    ref: { "@ref": { id: "123456" } }
+  };
+  
+  let idPos = 1;
+  
+  beforeEach(function() {
+    spyOn(Plantilla, "cabeceraTablaTodos").and.returnValue("<thead></thead>");
+    spyOn(Plantilla, "pieTabla").and.returnValue("</table>");
+    spyOn(Frontend.Article, "actualizar");
+  });
+  
+  it("debería llamar a Plantilla.cabeceraTablaTodos, Plantilla.pieTabla y Frontend.Article.actualizar", function() {
+    Plantilla.mostrarPersona(persona, idPos);
+    expect(Plantilla.cabeceraTablaTodos).toHaveBeenCalled();
+    expect(Plantilla.pieTabla).toHaveBeenCalled();
+    expect(Frontend.Article.actualizar).toHaveBeenCalledWith("Detalles de persona", jasmine.any(String));
+  });
+  
+  it("debería devolver una tabla con los detalles de la persona", function() {
+    let resultado = Plantilla.mostrarPersona(persona, idPos);
+    expect(resultado).toContain("<td>1</td>");
+    expect(resultado).toContain("<td>John</td>");
+    expect(resultado).toContain("<td>Doe</td>");
+    expect(resultado).toContain("<td>1</td>");
+    expect(resultado).toContain("<td>1</td>");
+    expect(resultado).toContain("<td>1990</td>");
+    expect(resultado).toContain("<td>Barcelona</td>");
+    expect(resultado).toContain("<td>España</td>");
+    expect(resultado).toContain("<td>2016,2022</td>");
+    expect(resultado).toContain("<td>180</td>");
+    expect(resultado).toContain("<td>2</td>");
+    expect(resultado).toContain("<td>Armador</td>");
+  });
+  
+  it("debería incluir el ID de la persona en el atributo 'ID' de la fila", function() {
+    let resultado = Plantilla.mostrarPersona(persona, idPos);
+    expect(resultado).toContain(`<td>1</td>`);
+  });
+
+});
+
   
 
 

@@ -128,7 +128,7 @@ Plantilla.procesarAcercaDe = function () {
 /**
  * Función principal para responder al evento de elegir la opción "Listar nombres personas"
  */
-Plantilla.procesarListarNombres = function () {
+Plantilla.procesarListarNombres = async function () {
     this.recupera(this.imprime);
 }
 
@@ -178,7 +178,7 @@ Plantilla.recupera = async function (callBackFn) {
 
 // Tercera historia de usuario
 
-Plantilla.procesarListarNombresOrdenados = function () {
+Plantilla.procesarListarNombresOrdenados = async function () {
     this.recupera(this.imprimexNombre);
 }
 
@@ -209,7 +209,7 @@ Plantilla.imprimexNombre = function (vector) {
 }
 
 // Cuarta historia de usuario
-Plantilla.procesarListarTodos = function () {
+Plantilla.procesarListarTodos = async function () {
     this.recupera(this.imprimeTodos);
 }
 
@@ -234,7 +234,7 @@ Plantilla.cabeceraTablaTodos = function () {
 
 //Quinta historia de usuario
 
-Plantilla.cambiarOrden = function (){
+Plantilla.cambiarOrden = async function (){
     this.recupera(this.ordenarBoton)
  }
 
@@ -321,3 +321,24 @@ Plantilla.ordenarBoton = function(vector){
     Frontend.Article.actualizar("Listado de personas con diferente orden", mensaje);
     return mensaje;
 }
+
+// Sexta historia de usuario
+
+Plantilla.muestroPersona = async function(id) {
+    this.recupera(function(vector) {
+      let persona = vector.find(e => e.ref['@ref'].id == id);
+      if (persona) {
+        Plantilla.mostrarPersona(persona, id);
+      }
+    });
+  }
+
+Plantilla.mostrarPersona = function (persona, idPos) {
+    const d = persona.data;
+    let mensaje = "";
+    mensaje += Plantilla.cabeceraTablaTodos();
+    mensaje += `<tr title="${persona.ref['@ref'].ID}"><td>${idPos}</td><td>${d.nombre}</td><td>${d.apellidos}</td><td>${d.nacimiento.dia}</td><td>${d.nacimiento.mes}</td><td>${d.nacimiento.Año}</td><td>${d.direccion.ciudad}</td><td>${d.direccion.pais}</td><td>${d.vectorCompeticiones}</td><td>${d.talla}</td><td>${d.numMedallasOlimpicas}</td><td>${d.posicion}</td></tr>`;
+    mensaje += Plantilla.pieTabla();
+    Frontend.Article.actualizar("Detalles de persona", mensaje);
+    return mensaje;
+  }
