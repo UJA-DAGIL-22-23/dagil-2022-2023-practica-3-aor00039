@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/hneiFYl3)
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10405379&assignment_repo_type=AssignmentRepo)
 # *Plantilla Práctica Microservicios*: descripción de la aplicación
 
@@ -248,6 +249,20 @@ https://trello.com/b/WyrDLy6L/pr%C3%A1ctica-3-aor00039
 
 -Listado con botones para poder ordenar la tabla, en este caso están ordenados por talla:
 ![image](https://user-images.githubusercontent.com/124682695/230424107-7117bdf4-ce91-48ce-aa78-552de74528b7.png)
+
+#### Sexta historia de usuario
+
+-Trello:
+![image](https://user-images.githubusercontent.com/124682695/231176827-ed7de769-539c-4359-aacb-23c7a740e955.png)
+
+
+-Tabla con los datos de una sola persona
+![image](https://user-images.githubusercontent.com/124682695/231176884-42f479e6-d8a1-462a-995d-86b4d456e2cb.png)
+
+## Fin del segundo incremento
+![image](https://user-images.githubusercontent.com/124682695/232207588-2eff4c04-c242-41f0-956b-aceefd39671d.png)
+
+
 
 
 
