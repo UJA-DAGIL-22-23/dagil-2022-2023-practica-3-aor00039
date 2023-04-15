@@ -10,10 +10,32 @@
     border: 1px solid rgba(0, 0, 100, 0.8);
 }
 
-.miBoton{
+.contenedor-botones {
     display: flex;
-}
-
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .miBoton {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    background-color: #4a7cff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .miBoton:hover {
+    background-color: #0055b8;
+  }
+  
 table.listado-proyectos thead th,
 table.listado-proyectos tbody th {
     margin: 3px;
@@ -38,3 +60,25 @@ table.listado-proyectos tbody tr {
     height: 2em;
     background-color: rgba(0, 0, 100, 0.1)
 }
+
+#buscar {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 200px;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #003ffd;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0400ff;
+  }

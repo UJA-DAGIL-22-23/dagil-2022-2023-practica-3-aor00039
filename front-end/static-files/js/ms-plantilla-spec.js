@@ -531,6 +531,144 @@ describe("Plantilla.siguienteJugador", function() {
     expect(indiceActual).toEqual(2);
   });
 });
+
+describe("Plantilla.pantallaBuscarNombre()", function() {
+  let vector;
+
+  beforeEach(function() {
+    vector = [
+      { 
+        ref: { "@ref": { id: 1 } }, 
+        data: { 
+          nombre: "Juan", 
+          apellidos: "García", 
+          nacimiento: { dia: 10, mes: 2, año: 1980 }, 
+          direccion: { ciudad: "Madrid", pais: "España" }, 
+          vectorCompeticiones: ["2020"], 
+          talla: 180, 
+          numMedallasOlimpicas: 2, 
+          posicion: "Armador"
+        } 
+      },
+      { 
+        ref: { "@ref": { id: 2 } }, 
+        data: { 
+          nombre: "María", 
+          apellidos: "Pérez", 
+          nacimiento: { dia: 3, mes: 11, año: 1995 }, 
+          direccion: { ciudad: "Barcelona", pais: "España" }, 
+          vectorCompeticiones: ["2020"], 
+          talla: 165, 
+          numMedallasOlimpicas: 1, 
+          posicion: "Armador"
+        } 
+      }
+    ];
+  });
+
+  it("devuelve un string con el HTML de la pantalla de búsqueda", function() {
+    expect(Plantilla.pantallaBuscarNombre(vector)).toEqual(jasmine.any(String));
+  });
+
+  it("muestra un input para introducir un nombre", function() {
+    const pantalla = Plantilla.pantallaBuscarNombre(vector);
+    const input = pantalla.includes('<input type="text" id="buscar" placeholder="Introduce un nombre">');
+    expect(input).toBeTrue();
+  });
+
+  it("muestra un botón para buscar", function() {
+    const pantalla = Plantilla.pantallaBuscarNombre(vector);
+    const boton = pantalla.includes('<button onclick="Plantilla.busca(vDatos)">Buscar</button>');
+    expect(boton).toBeTrue();
+  });
+});
+
+describe("Plantilla.generarMensaje", function() {
+  let mensaje;
+  
+  beforeEach(function() {
+    mensaje = "Mensaje de prueba";
+  });
+  
+  it("debería añadir el botón de búsqueda si encontrada es verdadero", function() {
+    let resultado = Plantilla.generarMensaje(mensaje, true);
+    let botonBuscar = '<input type="text" id="buscar" placeholder="Introduce un nombre"><button onclick="Plantilla.busca(vDatos)">Buscar</button>';
+    expect(resultado).toContain(botonBuscar);
+  });
+  
+  it("debería añadir el mensaje de error si encontrada es falso", function() {
+    let resultado = Plantilla.generarMensaje(mensaje, false);
+    let mensajeError = '<div class="error"><p>¡Error! No se ha encontrado el nombre.</p> </div>';
+    expect(resultado).toContain(mensajeError);
+  });
+  
+  it("debería devolver un mensaje vacío si se le pasa un mensaje vacío y encontrada es verdadero", function() {
+    let resultado = Plantilla.generarMensaje("", true);
+    expect(resultado).toEqual('<input type="text" id="buscar" placeholder="Introduce un nombre"><button onclick="Plantilla.busca(vDatos)">Buscar</button>');
+  });
+  
+  it("debería devolver un mensaje de error si se le pasa un mensaje vacío y encontrada es falso", function() {
+    let resultado = Plantilla.generarMensaje("", false);
+    expect(resultado).toEqual('<input type="text" id="buscar" placeholder="Introduce un nombre"><button onclick="Plantilla.busca(vDatos)">Buscar</button><div class="error"><p>¡Error! No se ha encontrado el nombre.</p> </div>');
+  });
+});
+
+describe("Plantilla.busca", function() {
+  let vector;
+
+  beforeEach(function() {
+    vector = [
+      { 
+        ref: { "@ref": { id: 1 } }, 
+        data: { 
+          nombre: "Juan", 
+          apellidos: "García", 
+          nacimiento: { dia: 10, mes: 2, año: 1980 }, 
+          direccion: { ciudad: "Madrid", pais: "España" }, 
+          vectorCompeticiones: ["2020"], 
+          talla: 180, 
+          numMedallasOlimpicas: 2, 
+          posicion: "Armador"
+        } 
+      },
+      { 
+        ref: { "@ref": { id: 2 } }, 
+        data: { 
+          nombre: "María", 
+          apellidos: "Pérez", 
+          nacimiento: { dia: 3, mes: 11, año: 1995 }, 
+          direccion: { ciudad: "Barcelona", pais: "España" }, 
+          vectorCompeticiones: ["2020"], 
+          talla: 165, 
+          numMedallasOlimpicas: 1, 
+          posicion: "Armador"
+        } 
+      }
+    ];
+  });
+
+  it("debería devolver un mensaje de error si no se encuentra el nombre", function() {
+    // Espera a que el DOM esté completamente cargado
+    document.addEventListener('DOMContentLoaded', function() {
+      // Establece el valor del elemento 'buscar'
+      document.body.innerHTML = '<input type="text" id="buscar" value="Fernando">';
+      let mensaje = Plantilla.busca(vector);
+      expect(mensaje).toContain('<div class="error"><p>¡Error! No se ha encontrado el nombre.</p> </div>');
+    });
+  });
+
+  it("debería devolver un mensaje con la información de la persona si se encuentra el nombre", function() {
+    // Espera a que el DOM esté completamente cargado
+    document.addEventListener('DOMContentLoaded', function() {
+      // Establece el valor del elemento 'buscar'
+      document.body.innerHTML = '<input type="text" id="buscar" value="Juan">';
+      let mensaje = Plantilla.busca(vector);
+      expect(mensaje).toContain('Juan');
+      expect(mensaje).not.toContain('María');
+    });
+  });
+});
+
   
 
 

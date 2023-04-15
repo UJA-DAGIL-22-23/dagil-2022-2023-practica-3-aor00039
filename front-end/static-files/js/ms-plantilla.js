@@ -389,3 +389,44 @@ Plantilla.mostrarPersona = function (persona, indiceActual) {
   Frontend.Article.actualizar("Detalles de persona", mensaje);
   return mensaje;
 };
+
+
+//Octava historia de usuario
+Plantilla.buscarNombre = function(){
+    this.recupera(this.pantallaBuscarNombre);
+}
+
+Plantilla.pantallaBuscarNombre=function(vector){
+    vDatos=vector;
+    let mensaje = "";
+    mensaje+='<input type="text" id="buscar" placeholder="Introduce un nombre"><button onclick="Plantilla.busca(vDatos)">Buscar</button>'
+    Frontend.Article.actualizar("Buscar persona por nombre", mensaje);
+    return mensaje;
+}
+
+Plantilla.busca = function(vector){
+    var nombre = document.getElementById("buscar").value.toUpperCase();
+    let encontrada = false;
+    let mensaje = "";
+    for(let i = 0;i<vector.length;i++ ){
+        if(vector[i].data.nombre.toUpperCase() == nombre){
+            encontrada = true;
+            mensaje += Plantilla.cabeceraTablaTodos() + Plantilla.cuerpoListarTodos(vector[i]) + Plantilla.pieTabla();
+        }
+    }
+    mensaje = Plantilla.generarMensaje(mensaje, encontrada);
+    Frontend.Article.actualizar("Buscar persona por nombre", mensaje);
+    return mensaje;
+  }
+  
+  Plantilla.generarMensaje = function(mensaje, encontrada) {
+    if (encontrada) {
+      mensaje+='<input type="text" id="buscar" placeholder="Introduce un nombre"><button onclick="Plantilla.busca(vDatos)">Buscar</button>';
+    } else {
+      mensaje+='<input type="text" id="buscar" placeholder="Introduce un nombre"><button onclick="Plantilla.busca(vDatos)">Buscar</button>' + '<div class="error"><p>¡Error! No se ha encontrado el nombre.</p> </div>';
+    }
+    return mensaje;
+  }
+
+
+  //Novena y última historia de usuario
