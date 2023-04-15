@@ -280,6 +280,42 @@ y si pulsamos el botón siguiente...
 ![image](https://user-images.githubusercontent.com/124682695/232210418-617dabd4-78c1-47c4-b52a-298f4d3d351c.png)
 
 
+#### Octava historia de usuario
+
+-Trello:
+![image](https://user-images.githubusercontent.com/124682695/232227144-8ae47d9c-cd67-4711-8fbe-77869b765da8.png)
+
+
+-Buscador por nombre:
+![image](https://user-images.githubusercontent.com/124682695/232227124-4151afe4-1d03-4da6-90ee-690a1c4d34f6.png)
+
+
+#### Novena historia de usuario
+
+-Trello:
+![image](https://user-images.githubusercontent.com/124682695/232230812-2b181a0e-e282-4581-b25a-53dfc42546b7.png)
+
+-Datos mostrados al buscar por talla, donde se introduce el valor 190:
+![image](https://user-images.githubusercontent.com/124682695/232230825-8d609854-3fd7-4f6c-92f1-6714de7a5293.png)
+
+aquí podemos ver el buscador:
+![image](https://user-images.githubusercontent.com/124682695/232230834-1025f35b-bd69-4cb7-89d8-9d4cbf009f98.png)
+
+
+### A tener en cuenta
+
+Se han hecho modificaciones en el css de la aplicación, durante el tercer incremento, para que, visualmente, quede mejor.
+
+## Fin del tercer incremento
+
+-Trello:
+![image](https://user-images.githubusercontent.com/124682695/232230891-c341f02e-d695-4591-a8f8-68bb94b0be65.png)
+
+
+
+
+
+
 
 
 
