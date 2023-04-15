@@ -280,6 +280,17 @@ y si pulsamos el botón siguiente...
 ![image](https://user-images.githubusercontent.com/124682695/232210418-617dabd4-78c1-47c4-b52a-298f4d3d351c.png)
 
 
+#### Octava historia de usuario
+
+-Trello:
+![image](https://user-images.githubusercontent.com/124682695/232227144-8ae47d9c-cd67-4711-8fbe-77869b765da8.png)
+
+
+-Buscador por nombre:
+![image](https://user-images.githubusercontent.com/124682695/232227124-4151afe4-1d03-4da6-90ee-690a1c4d34f6.png)
+
+
+
 
 
 
