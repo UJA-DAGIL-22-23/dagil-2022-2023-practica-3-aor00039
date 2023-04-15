@@ -430,3 +430,59 @@ Plantilla.busca = function(vector){
 
 
   //Novena y última historia de usuario
+
+  Plantilla.buscarCampos = function(){
+    this.recupera(this.buscadorGeneral);
+}
+
+  Plantilla.buscadorGeneral = function(vector) {
+    vDatos = vector;
+    let mensaje = "";
+    mensaje += '<select id="selectCampo">';
+    mensaje += '<option value="apellidos">Apellidos</option>';
+    mensaje += '<option value="talla">Talla</option>';
+    mensaje += '<option value="numMedallasOlimpicas">Medallas olímpicas</option>';
+    mensaje += '<option value="posicion">Posición</option>';
+    mensaje += '</select>';
+    mensaje += '<input type="text" id="buscar" placeholder="Introduce el valor a buscar">';
+    mensaje += '<button onclick="Plantilla.buscador(vDatos)">Buscar</button>';
+    Frontend.Article.actualizar("Buscar persona por campo", mensaje);
+    return mensaje;
+  }
+
+  Plantilla.obtenerValorCampo = function(objeto, campo) {
+    let propiedades = campo.split('.');
+    let valor = objeto;
+    for (let i = 0; i < propiedades.length; i++) {
+      let propiedadActual = propiedades[i];
+      if (typeof valor[propiedadActual] === 'string' && i !== propiedades.length - 1) {
+        valor = valor[propiedades[i]].toUpperCase();
+      } else {
+        valor = valor[propiedades[i]];
+      }
+    }
+    return valor;
+  }
+  
+  
+Plantilla.buscador = function(vector) {
+    var campo = document.getElementById("selectCampo").value;
+    var valor = document.getElementById("buscar").value;
+    let encontrada = false;
+    let mensaje = "";
+    for (let i = 0; i < vector.length; i++) {
+      let campoValor = Plantilla.obtenerValorCampo(vector[i].data, campo);
+      if (typeof campoValor === "number" && !isNaN(parseInt(valor))) {
+        valor = parseInt(valor);
+      }
+      if (campoValor.toString().toUpperCase() == valor.toString().toUpperCase()) {
+        encontrada = true;
+        mensaje += Plantilla.cabeceraTablaTodos() + Plantilla.cuerpoListarTodos(vector[i]) + Plantilla.pieTabla();
+      }
+    }
+    Frontend.Article.actualizar("Buscar persona por campo", mensaje);
+    return mensaje;
+  }
+
+ 
+

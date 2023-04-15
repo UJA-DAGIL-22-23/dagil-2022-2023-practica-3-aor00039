@@ -18,6 +18,15 @@
 .mostrar {
     display: inline-block;
 }
+nav {
+    display: flex;
+    flex-direction: column;
+}
+
+nav a {
+    display: block;
+}
+
 
 
 
@@ -28,6 +37,7 @@
     text-decoration: none;
     background-color: rgba(55, 0, 255, 0.2);
     color: inherit;
+    align-items: center 
 }
 
 .miBoton {

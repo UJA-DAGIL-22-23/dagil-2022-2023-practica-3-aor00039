@@ -648,9 +648,7 @@ describe("Plantilla.busca", function() {
   });
 
   it("debería devolver un mensaje de error si no se encuentra el nombre", function() {
-    // Espera a que el DOM esté completamente cargado
     document.addEventListener('DOMContentLoaded', function() {
-      // Establece el valor del elemento 'buscar'
       document.body.innerHTML = '<input type="text" id="buscar" value="Fernando">';
       let mensaje = Plantilla.busca(vector);
       expect(mensaje).toContain('<div class="error"><p>¡Error! No se ha encontrado el nombre.</p> </div>');
@@ -658,9 +656,7 @@ describe("Plantilla.busca", function() {
   });
 
   it("debería devolver un mensaje con la información de la persona si se encuentra el nombre", function() {
-    // Espera a que el DOM esté completamente cargado
     document.addEventListener('DOMContentLoaded', function() {
-      // Establece el valor del elemento 'buscar'
       document.body.innerHTML = '<input type="text" id="buscar" value="Juan">';
       let mensaje = Plantilla.busca(vector);
       expect(mensaje).toContain('Juan');
@@ -668,6 +664,130 @@ describe("Plantilla.busca", function() {
     });
   });
 });
+
+
+describe("Plantilla.buscadorGeneral()", function() {
+  it("Debería devolver un string", function() {
+    const vector = [];
+    const result = Plantilla.buscadorGeneral(vector);
+    expect(typeof result).toBe("string");
+  });
+  it("Debería contener un select con opciones", function() {
+    const vector = [];
+    const result = Plantilla.buscadorGeneral(vector);
+    const selectElement = document.createElement("div");
+    selectElement.innerHTML = result;
+    const select = selectElement.querySelector("#selectCampo");
+    expect(select).toBeDefined();
+    expect(select.children.length).toBeGreaterThan(0);
+  });
+  it("Debería contener un input y un botón", function() {
+    const vector = [];
+    const result = Plantilla.buscadorGeneral(vector);
+    const inputElement = document.createElement("div");
+    inputElement.innerHTML = result;
+    const input = inputElement.querySelector("#buscar");
+    expect(input).toBeDefined();
+    const button = inputElement.querySelector("button");
+    expect(button).toBeDefined();
+  });
+  
+});
+
+
+describe("Plantilla.obtenerValorCampo", function() {
+  it("debería devolver el valor de un campo simple", function() {
+    const objeto = {nombre: "Juan"};
+    const campo = "nombre";
+    expect(Plantilla.obtenerValorCampo(objeto, campo)).toEqual("Juan");
+  });
+  it("debería devolver el valor de un campo anidado", function() {
+    const objeto = {persona: {nombre: "Juan", apellidos: "Pérez Gómez"}};
+    const campo = "persona.nombre";
+    expect(Plantilla.obtenerValorCampo(objeto, campo)).toEqual("Juan");
+  });
+  it("debería devolver el valor de un campo anidado con propiedad en mayúsculas", function() {
+    const objeto = {persona: {nombre: "Juan", apellidos: "Pérez Gómez", numMedallasOlimpicas: 30}};
+    const campo = "persona.numMedallasOlimpicas";
+    expect(Plantilla.obtenerValorCampo(objeto, campo)).toEqual(30);
+  });
+
+});
+
+describe("Plantilla.buscador", function() {
+  let vector;
+
+  beforeEach(function() {
+    vector = [
+      { 
+        ref: { "@ref": { id: 1 } }, 
+        data: { 
+          nombre: "Juan", 
+          apellidos: "García", 
+          nacimiento: { dia: 10, mes: 2, año: 1980 }, 
+          direccion: { ciudad: "Madrid", pais: "España" }, 
+          vectorCompeticiones: ["2020"], 
+          talla: 180, 
+          numMedallasOlimpicas: 2, 
+          posicion: "Armador"
+        } 
+      },
+      { 
+        ref: { "@ref": { id: 2 } }, 
+        data: { 
+          nombre: "María", 
+          apellidos: "Pérez", 
+          nacimiento: { dia: 3, mes: 11, año: 1995 }, 
+          direccion: { ciudad: "Barcelona", pais: "España" }, 
+          vectorCompeticiones: ["2020"], 
+          talla: 165, 
+          numMedallasOlimpicas: 1, 
+          posicion: "Armador"
+        } 
+      }
+    ];
+    const campo = document.createElement("input");
+    campo.id = "selectCampo";
+    campo.value = "nombre";
+    document.body.appendChild(campo);
+
+    const buscar = document.createElement("input");
+    buscar.id = "buscar";
+    buscar.value = "Juan";
+    document.body.appendChild(buscar);
+  });
+
+  afterEach(function() {
+    const campo = document.getElementById("selectCampo");
+    campo.remove();
+
+    const buscar = document.getElementById("buscar");
+    buscar.remove();
+  });
+  it("debería buscar correctamente por nombre", function() {
+    expect(Plantilla.buscador(vector)).toContain("Juan");
+    expect(Plantilla.buscador(vector)).not.toContain("María");
+  });
+  it("debería buscar correctamente por apellidos", function() {
+    const campo = document.getElementById("selectCampo");
+    campo.value = "apellidos";
+    const buscar = document.getElementById("buscar");
+    buscar.value = "Pérez";
+
+    expect(Plantilla.buscador(vector)).toContain("María");
+    expect(Plantilla.buscador(vector)).not.toContain("Juan");
+  });
+  it("debería buscar correctamente por número de medallas", function() {
+    const campo = document.getElementById("selectCampo");
+    campo.value = "numMedallasOlimpicas";
+    const buscar = document.getElementById("buscar");
+    buscar.value = "2";
+
+    expect(Plantilla.buscador(vector)).toContain("Juan");
+    expect(Plantilla.buscador(vector)).not.toContain("María");
+  });
+});
+
 
   
 
