@@ -263,6 +263,23 @@ https://trello.com/b/WyrDLy6L/pr%C3%A1ctica-3-aor00039
 ![image](https://user-images.githubusercontent.com/124682695/232207588-2eff4c04-c242-41f0-956b-aceefd39671d.png)
 
 
+## Tercer incremento
+
+-Trello:
+![image](https://user-images.githubusercontent.com/124682695/232210364-8bfc3fdd-e324-474b-941a-604d194d6841.png)
+
+#### Séptima historia de usuario
+
+-Trello:
+![image](https://user-images.githubusercontent.com/124682695/232210383-ea2e0633-9643-4f07-9796-7645ae6a45e8.png)
+
+-Listado con botones anterior y siguiente:
+![image](https://user-images.githubusercontent.com/124682695/232210397-6683d773-fd13-4bc7-9dbe-d9597b6234fa.png)
+
+y si pulsamos el botón siguiente...
+![image](https://user-images.githubusercontent.com/124682695/232210418-617dabd4-78c1-47c4-b52a-298f4d3d351c.png)
+
+
 
 
 
