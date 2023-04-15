@@ -324,7 +324,9 @@ Plantilla.ordenarBoton = function(vector){
 
 // Sexta historia de usuario
 
-Plantilla.muestroPersona = async function(id) {
+//Se ha comentado esta parte porque la séptima historia de usuario es similar pero añadiendo 2 botones
+
+/*Plantilla.muestroPersona = async function(id) {
     this.recupera(function(vector) {
       let persona = vector.find(e => e.ref['@ref'].id == id);
       if (persona) {
@@ -341,4 +343,49 @@ Plantilla.mostrarPersona = function (persona, idPos) {
     mensaje += Plantilla.pieTabla();
     Frontend.Article.actualizar("Detalles de persona", mensaje);
     return mensaje;
+  }*/
+
+
+  //Séptima historia de usuario
+
+  //Vector ordenado con los iD
+const idJugadores = [359175635380207820, 359290943230181581, 359740219224752332, 359740327119028429, 359740477276160204, 359740594528977100, 359740680986165452, 359740808552775885, 359741028675092684, 359741261320552652];
+
+let indiceActual = 0;
+
+Plantilla.muestroPersona = async function (id) {
+  this.recupera(function (vector) {
+    let persona = vector.find((e) => e.ref["@ref"].id == id);
+    if (persona) {
+      Plantilla.mostrarPersona(persona, indiceActual);
+    }
+  });
+};
+
+// Esta función muestra el jugador anterior
+Plantilla.anteriorJugador = function () {
+  if (indiceActual > 0) {
+    indiceActual--;
+    Plantilla.muestroPersona(idJugadores[indiceActual]);
   }
+};
+
+// Esta función muestra el siguiente jugador
+Plantilla.siguienteJugador = function () {
+  if (indiceActual < idJugadores.length - 1) {
+    indiceActual++;
+    Plantilla.muestroPersona(idJugadores[indiceActual]);
+  }
+};
+
+Plantilla.mostrarPersona = function (persona, indiceActual) {
+  const d = persona.data;
+  let mensaje = "";
+  mensaje += `<div class="contenedor"><button class="miBoton" onclick="Plantilla.anteriorJugador()">Anterior</button></div><br></br>`;
+  mensaje += `<div class="contenedor"><button class="miBoton" onclick="Plantilla.siguienteJugador()">Siguiente</button></div><br></br>`;
+  mensaje += Plantilla.cabeceraTablaTodos();
+  mensaje += `<tr title="${persona.ref['@ref'].ID}"><td>${indiceActual+1}</td><td>${d.nombre}</td><td>${d.apellidos}</td><td>${d.nacimiento.dia}</td><td>${d.nacimiento.mes}</td><td>${d.nacimiento.Año}</td><td>${d.direccion.ciudad}</td><td>${d.direccion.pais}</td><td>${d.vectorCompeticiones}</td><td>${d.talla}</td><td>${d.numMedallasOlimpicas}</td><td>${d.posicion}</td></tr>`;
+  mensaje += Plantilla.pieTabla();
+  Frontend.Article.actualizar("Detalles de persona", mensaje);
+  return mensaje;
+};

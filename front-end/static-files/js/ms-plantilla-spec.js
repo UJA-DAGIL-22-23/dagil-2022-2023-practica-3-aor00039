@@ -489,6 +489,48 @@ describe("Plantilla.mostrarPersona", function() {
 
 });
 
+
+describe("Plantilla.anteriorJugador", function() {
+  let idJugadores;
+  let indiceActual;
+
+  beforeEach(function() {
+    idJugadores = [359175635380207820, 359290943230181581, 359740219224752332, 359740327119028429, 359740477276160204, 359740594528977100, 359740680986165452, 359740808552775885, 359741028675092684, 359741261320552652];
+    indiceActual = 1;
+  });
+
+  it("debería decrementar el índice actual si es mayor que cero", function() {
+    Plantilla.anteriorJugador();
+    expect(indiceActual).toEqual(1);
+  });
+
+  it("no debería decrementar el índice actual si es igual a cero", function() {
+    indiceActual = 0;
+    Plantilla.anteriorJugador();
+    expect(indiceActual).toEqual(0);
+  });
+});
+
+describe("Plantilla.siguienteJugador", function() {
+  let idJugadores;
+  let indiceActual=0;
+
+  beforeEach(function() {
+    idJugadores = [1, 2, 3];
+    indiceActual = 1;
+  });
+
+  it("debería incrementar el índice actual si es menor que la longitud del vector - 1", function() {
+    Plantilla.siguienteJugador();
+    expect(indiceActual).toEqual(1);
+  });
+
+  it("no debería incrementar el índice actual si es igual a la longitud del vector - 1", function() {
+    indiceActual = 2;
+    Plantilla.siguienteJugador();
+    expect(indiceActual).toEqual(2);
+  });
+});
   
 
 
