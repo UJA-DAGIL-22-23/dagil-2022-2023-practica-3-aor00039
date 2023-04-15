@@ -259,6 +259,10 @@ https://trello.com/b/WyrDLy6L/pr%C3%A1ctica-3-aor00039
 -Tabla con los datos de una sola persona
 ![image](https://user-images.githubusercontent.com/124682695/231176884-42f479e6-d8a1-462a-995d-86b4d456e2cb.png)
 
+## Fin del segundo incremento
+![image](https://user-images.githubusercontent.com/124682695/232207588-2eff4c04-c242-41f0-956b-aceefd39671d.png)
+
+
 
 
 
